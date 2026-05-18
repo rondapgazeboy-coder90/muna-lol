@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Makan Rahayu | Masakan Rumahan Khas Nusantara</title>
+    <meta name="description" content="Warung Makan Rahayu menyajikan masakan rumahan lezat di Labangka, Penajam Paser Utara. Rasakan cita rasa Nusantara yang otentik.">
+    <!-- Tautan ke Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Google: Inter untuk teks biasa, Playfair Display untuk judul -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <!-- Ikon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rahayu-primary': '#d97706', // Warna oranye keemasan hangat
+                        'rahayu-secondary': '#92400e', // Warna coklat gelap
+                        'rahayu-bg': '#fef3c7', // Warna latar belakang krem pucat
+                        'rahayu-dark': '#451a03', // Teks sangat gelap
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'serif': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Efek paralaks halus untuk bagian hero */
+        .hero-bg {
+            background-image: linear-gradient(rgba(69, 26, 3, 0.7), rgba(69, 26, 3, 0.7)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Menambahkan efek paralaks ringan */
+        }
+        
+        /* Navigasi lengket bayangan lembut */
+        .nav-scrolled {
+            @apply shadow-md bg-white/95 backdrop-blur-sm transition-all duration-300;
+        }
+
+        /* Kartu menu efek hover */
+        .menu-card {
+            @apply transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl;
+        }
+        
+        /* Ikon media sosial hover */
+        .social-icon {
+            @apply text-gray-400 hover:text-white transition-colors duration-200;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navigasi -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl font-bold text-rahayu-secondary flex items-center gap-2">
+                        <i class="fa-solid fa-bowl-food text-rahayu-primary"></i>
+                        Warung Rahayu
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#beranda" class="text-gray-700 hover:text-rahayu-primary font-medium transition">Beranda</a>
+                    <a href="#tentang" class="text-gray-700 hover:text-rahayu-primary font-medium transition">Tentang Kami</a>
+                    <a href="#menu" class="text-gray-700 hover:text-rahayu-primary font-medium transition">Menu Spesial</a>
+                    <a href="#lokasi" class="text-gray-700 hover:text-rahayu-primary font-medium transition">Lokasi</a>
+                    <a href="https://maps.app.goo.gl/4Ry49HcYJsLRPAVZA" target="_blank" rel="noopener noreferrer" class="bg-rahayu-primary hover:bg-rahayu-secondary text-white px-5 py-2 rounded-full font-medium transition-colors shadow-sm">
+                        Kunjungi Kami
+                    </a>
+                </div>
+
+                <!-- Tombol Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-rahayu-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile (Tersembunyi secara default) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#beranda" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-rahayu-primary hover:bg-gray-50 mobile-link">Beranda</a>
+                <a href="#tentang" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-rahayu-primary hover:bg-gray-50 mobile-link">Tentang Kami</a>
+                <a href="#menu" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-rahayu-primary hover:bg-gray-50 mobile-link">Menu Spesial</a>
+                <a href="#lokasi" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-rahayu-primary hover:bg-gray-50 mobile-link">Lokasi</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main class="flex-grow">
+        
+        <!-- Bagian Beranda (Hero) -->
+        <section id="beranda" class="relative hero-bg h-[85vh] flex items-center justify-center text-center px-4 pt-20">
+            <div class="max-w-3xl mx-auto z-10 text-white">
+                <span class="block text-rahayu-primary font-semibold tracking-wider uppercase mb-4 text-sm md:text-base">Selamat Datang di</span>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
+                    Cita Rasa Khas<br>Nusantara
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+                    Menyajikan masakan rumahan autentik dengan resep warisan keluarga di jantung Labangka. Bersantap hangat seperti di rumah sendiri.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#menu" class="bg-rahayu-primary hover:bg-yellow-600 text-white px-8 py-3.5 rounded-full font-semibold text-lg transition-colors shadow-lg hover:shadow-xl">
+                        Lihat Menu
+                    </a>
+                    <a href="#lokasi" class="bg-white/10 hover:bg-white/20 border border-white/30 backdrop-blur-sm text-white px-8 py-3.5 rounded-full font-semibold text-lg transition-all">
+                        Temukan Lokasi
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Gelombang pembatas bawah -->
+            <div class="absolute bottom-0 w-full overflow-hidden leading-none">
+                <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,152.46,130,224.28,103.2,258.91,90,290.52,73.5,321.39,56.44Z" fill="#f9fafb"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Bagian Tentang Kami -->
+        <section id="tentang" class="py-20 md:py-28 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <!-- Gambar -->
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl relative z-10 aspect-[4/3]">
+                            <img src="warungg.jpg" alt="Suasana Warung Rahayu" class="w-full h-full object-cover">
+                        </div>
+                        <!-- Dekorasi latar -->
+                        <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-rahayu-bg rounded-2xl z-0 border-2 border-rahayu-primary/20"></div>
+                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-orange-100 rounded-full z-0 opacity-60 blur-2xl"></div>
+                    </div>
+                    
+                    <!-- Teks -->
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="h-[2px] w-10 bg-rahayu-primary"></div>
+                            <span class="text-rahayu-primary font-semibold uppercase tracking-wider text-sm">Cerita Kami</span>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+                            Lebih dari Sekedar Tempat Makan
+                        </h2>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Warung Makan Rahayu hadir di Labangka, Penajam Paser Utara, dengan misi sederhana: menyajikan hidangan rumahan yang menggugah selera dengan bahan-bahan lokal pilihan. 
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Kami percaya bahwa makanan terbaik adalah yang dimasak dengan hati. Setiap resep yang kami hidangkan merupakan warisan keluarga yang dipertahankan keaslian rasanya. Tempat yang nyaman dan bersih menjadikan kami pilihan tepat untuk bersantap bersama keluarga, teman, maupun rekan kerja.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-start gap-3">
+                                <div class="bg-rahayu-bg p-3 rounded-lg text-rahayu-primary">
+                                    <i class="fa-solid fa-leaf text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Bahan Segar</h4>
+                                    <p class="text-sm text-gray-500">Bahan baku harian pilihan</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="bg-rahayu-bg p-3 rounded-lg text-rahayu-primary">
+                                    <i class="fa-solid fa-utensils text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Resep Asli</h4>
+                                    <p class="text-sm text-gray-500">Cita rasa autentik Nusantara</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Menu -->
+        <section id="menu" class="py-20 md:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Judul Bagian -->
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-rahayu-primary font-semibold uppercase tracking-wider text-sm block mb-2">Hidangan Andalan</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+                        Menu Spesial Kami
+                    </h2>
+                    <p class="text-gray-600">
+                        Pilihan hidangan favorit pelanggan yang selalu disiapkan fresh setiap harinya. Tersedia juga berbagai menu rumahan lainnya.
+                    </p>
+                </div>
+
+                <!-- Grid Menu -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Item Menu 1 -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?q=80&w=800&auto=format&fit=crop" alt="Ayam Penyet" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-rahayu-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                Rekomendasi
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Ayam Bakar Taliwang</h3>
+                                <span class="text-lg font-semibold text-rahayu-primary">Rp 35k</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">Ayam kampung bakar dengan bumbu khas Taliwang yang pedas gurih, disajikan dengan plecing kangkung.</p>
+                            <div class="border-t border-gray-100 pt-4 mt-auto">
+                                <span class="text-xs text-gray-400"><i class="fa-solid fa-fire mr-1"></i> Pedas Sedang</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Menu 2 -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="kangkung.jpg" alt="Kangkung Pedas" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Kangkung Pedas</h3>
+                                <span class="text-lg font-semibold text-rahayu-primary">Rp 30k</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">Kangkung segar tumis pedas dengan bumbu cabai rawit, bawang putih, dan terasi yang menggugah selera.</p>
+                            <div class="border-t border-gray-100 pt-4 mt-auto">
+                                <span class="text-xs text-gray-400"><i class="fa-solid fa-fire mr-1"></i> Pedas Mantap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item Menu 3 -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                        <div class="h-56 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1626804475297-4160aeebfb4b?q=80&w=800&auto=format&fit=crop" alt="Nasi Campur" class="w-full h-full object-cover">
+                            <div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                Terlaris
+                            </div>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Nasi Campur Rahayu</h3>
+                                <span class="text-lg font-semibold text-rahayu-primary">Rp 25k</span>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">Paket lengkap nasi putih dengan lauk pauk harian, sayur lodeh, tempe orek, dan sambal terasi spesial.</p>
+                            <div class="border-t border-gray-100 pt-4 mt-auto">
+                                <span class="text-xs text-gray-400"><i class="fa-solid fa-star mr-1"></i> Favorit Keluarga</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Info Tambahan Menu -->
+                <div class="mt-12 text-center">
+                    <p class="text-gray-500 italic mb-4">"Tersedia puluhan menu masakan rumahan lainnya yang berganti setiap harinya."</p>
+                    <a href="https://wa.me/6281234567890" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-rahayu-primary text-rahayu-secondary font-semibold rounded-full hover:bg-rahayu-primary hover:text-white transition-colors">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        Pesan via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Lokasi -->
+        <section id="lokasi" class="py-20 md:py-28 bg-rahayu-bg/30 border-t border-orange-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    
+                    <!-- Informasi Kontak -->
+                    <div class="lg:col-span-4 flex flex-col justify-center">
+                        <div class="mb-8">
+                            <span class="text-rahayu-primary font-semibold uppercase tracking-wider text-sm block mb-2">Kunjungi Kami</span>
+                            <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">
+                                Lokasi Warung
+                            </h2>
+                            <p class="text-gray-600 mb-8">
+                                Kami mengundang Anda untuk singgah dan menikmati sajian lezat di tempat kami yang nyaman.
+                            </p>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Alamat -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 text-rahayu-primary">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Alamat Lengkap</h4>
+                                    <p class="text-gray-600 text-sm leading-relaxed">
+                                        GFCQ+978, Labangka, Kec. Babulu<br>
+                                        Kabupaten Penajam Paser Utara<br>
+                                        Kalimantan Timur 76285
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Jam Buka -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0 text-rahayu-primary">
+                                    <i class="fa-solid fa-clock text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 mb-1">Jam Operasional</h4>
+                                    <p class="text-gray-600 text-sm">
+                                        Setiap Hari: 08.00 - 20.00 WITA<br>
+                                        <span class="text-xs text-gray-400 italic">Tutup pada hari raya besar</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-gray-200">
+                            <a href="https://maps.app.goo.gl/4Ry49HcYJsLRPAVZA" target="_blank" rel="noopener noreferrer" class="w-full block text-center bg-gray-900 hover:bg-gray-800 text-white px-6 py-3.5 rounded-xl font-medium transition-colors shadow-md">
+                                <i class="fa-solid fa-map-location-dot mr-2"></i> Buka di Google Maps
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Embed Peta -->
+                    <div class="lg:col-span-8 rounded-2xl overflow-hidden shadow-xl border-4 border-white h-[400px] lg:h-auto min-h-[400px] relative bg-gray-200">
+                        <iframe 
+                            src="https://www.google.com/maps?q=GFCQ%2B978,+Labangka,+Kec.+Babulu,+Kabupaten+Penajam+Paser+Utara,+Kalimantan+Timur+76285&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; position:absolute; top:0; left:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Lokasi Warung Makan Rahayu di Peta"
+                        ></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-rahayu-dark text-white pt-16 pb-8 border-t-4 border-rahayu-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+                <!-- Tentang -->
+                <div>
+                    <a href="#" class="font-serif text-2xl font-bold text-white flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-bowl-food text-rahayu-primary"></i>
+                        Warung Rahayu
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 pr-4">
+                        Menyajikan kehangatan masakan rumahan Nusantara di Labangka, Penajam Paser Utara. Kualitas rasa dan kebersihan adalah prioritas kami.
+                    </p>
+                    <!-- Media Sosial -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a href="#" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Tautan Cepat -->
+                <div>
+                    <h4 class="text-lg font-bold font-serif mb-6 border-b border-gray-700 pb-2 inline-block">Tautan Cepat</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#beranda" class="text-gray-400 hover:text-rahayu-primary transition text-sm">Beranda</a></li>
+                        <li><a href="#tentang" class="text-gray-400 hover:text-rahayu-primary transition text-sm">Tentang Kami</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-rahayu-primary transition text-sm">Daftar Menu</a></li>
+                        <li><a href="#lokasi" class="text-gray-400 hover:text-rahayu-primary transition text-sm">Lokasi Maps</a></li>
+                    </ul>
+                </div>
+
+                <!-- Kontak Singkat -->
+                <div>
+                    <h4 class="text-lg font-bold font-serif mb-6 border-b border-gray-700 pb-2 inline-block">Hubungi Kami</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-400 text-sm">
+                            <i class="fa-solid fa-location-dot mt-1 text-rahayu-primary"></i>
+                            <span>Labangka, Babulu, Penajam Paser Utara, Kaltim 76285</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i class="fa-solid fa-phone text-rahayu-primary"></i>
+                            <span>+62 812-3456-7890</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400 text-sm">
+                            <i class="fa-solid fa-envelope text-rahayu-primary"></i>
+                            <span>halo@warungrahayu.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hak Cipta -->
+            <div class="border-t border-gray-800 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 Warung Makan Rahayu. Hak cipta dilindungi undang-undang.
+                </p>
+                <p class="text-gray-600 text-xs">
+                    Dibuat dengan <i class="fa-solid fa-heart text-red-500 mx-1"></i> untuk Penajam Paser Utara
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Interaktivitas Dasar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            //            
+            // 1. Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                // Ubah icon hamburger ke close
+                const icon = btn.querySelector('i');
+                if(menu.classList.contains('hidden')){
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // Tutup menu mobile saat link diklik
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    const icon = btn.querySelector('i');
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // 2. Navbar Background on Scroll
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('nav-scrolled');
+                    navbar.classList.remove('bg-white/90', 'border-gray-100');
+                    navbar.classList.add('bg-white', 'border-transparent');
+                } else {
+                    navbar.classList.remove('nav-scrolled', 'bg-white', 'border-transparent');
+                    navbar.classList.add('bg-white/90', 'border-gray-100');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
